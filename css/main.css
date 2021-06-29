@@ -100,3 +100,12 @@ a {
   height: var(--box-size);
   padding: 10px;
 }
+
+/* Portafolio*/
+.portfolio-item>img{
+  transition: .4s;
+}
+
+.portfolio-item:hover >img{
+  transform: scale(.96);
+}
