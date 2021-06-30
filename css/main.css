@@ -109,3 +109,23 @@ a {
 .portfolio-item:hover >img{
   transform: scale(.96);
 }
+
+/*Clientes*/
+
+.bg-purple{
+  background-color: rgba(131 87 235 / .3);
+  filter: opacity(.55);
+}
+
+.sec-clients >a{
+  transition: .3s ;
+}
+.sec-clients >a:hover{
+  filter: opacity(.5);
+}
+
+/*Contacto*/
+
+.bg-gris{
+  background-color: #f1eeee;
+}
