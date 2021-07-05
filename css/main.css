@@ -143,4 +143,7 @@ a {
   .photo-frame {
     font-size: 11px;
   }
+  .video-youtube{
+    width: 280px;
+  }
 }

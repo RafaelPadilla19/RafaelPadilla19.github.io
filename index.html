@@ -7,8 +7,7 @@
   <link rel="shortcut icon" href="recursos/Logo-Letra/favicon.png" type="image/x-icon" />
   <title>Rafael Padilla</title>
   <!-- CSS Bootstrap v5-->
-  <link href="css/bootstrap.min.css" rel="stylesheet"
-    crossorigin="anonymous" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
   <!-- CSS Main -->
   <link rel="stylesheet" href="./css/main.css" />
 </head>
@@ -154,7 +153,7 @@
           aplicaciones web y de escritorio, tengo una certificación como desarrollador en JS y me apasiona aprender
           nuevas tecnologías.
         </p>
-        <a href="" download="CV-RAFAEL" class="btn btn-danger rounded-pill px-4">Descargar CV</a>
+        <a href="https://drive.google.com/file/d/1nWg_C7phUWQepb92WwuK-gTX3Ll2MmwB/view?usp=sharing" target="_blank" download="CV-RAFAEL" class="btn btn-danger rounded-pill px-4">Descargar CV</a>
       </div>
     </section>
     <hr />
@@ -167,7 +166,7 @@
           <!--imagen 1-->
 
           <a href="" class="col-12 mb-3 portfolio-item" data-bs-toggle="modal" data-bs-target="#modal-portfolio">
-            <img src="img/portfolio/Portfolio-03.png" alt="" class="w-100 img-btn-modal-js">
+            <img src="img/portfolio/blogMicrosoft.png" alt="" class="w-100 img-btn-modal-js">
           </a>
 
           <!--imagen 2-->
@@ -209,9 +208,24 @@
 
       <!--modal general-->
 
-      <div class="col-9 modal fade" id="modal-portfolio">
+      <div class="col-9 modal fade seccion-modal" id="modal-portfolio">
         <div class="modal-dialog position-relative modal-dialog-centered">
-          <img src="" alt="" class="w-100 img-modal-js">
+          <div class="modal-content p-4">
+            <div class="d-flex justify-content-end">
+              <a href="#!" class="btn btn-close align-content-end text-center" data-bs-dismiss="modal" id='btn-close'></a>
+            </div>
+            <p class="h2 display-6 text-capitalize text-center">Blog sobre tecnologias Microsoft</p>
+            <div class="d-flex justify-content-end" id="div-iframe">
+              <iframe class="video_youtube" width="560" height="315" src="https://www.youtube.com/embed/U5rAbNq9R7M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" id="video_youtube" allowfullscreen></iframe>
+            </div>
+
+            <p class="py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos dolores repellendus eaque.
+              Sequi natus laboriosam vero fugiat voluptatibus perferendis non nobis hic illo, quisquam eum blanditiis,
+              expedita quod tempora enim?</p>
+            <div class="d-flex justify-content-center">
+            </div>
+
+          </div>
         </div>
       </div>
     </main>
@@ -288,12 +302,11 @@
   </div>
 
   <!--Footer-->
-    <div class="bg-purple text-center p-4">
-      &#169; Rafael 2021. Todos los derechos reservados
-    </div>
+  <div class="bg-purple text-center p-4">
+    &#169; Rafael 2021. Todos los derechos reservados
+  </div>
   <!-- JS Bootstrap -->
-  <script src="js/bootstrap.bundle.js"
-    crossorigin="anonymous"></script>
+  <script src="js/bootstrap.bundle.js" crossorigin="anonymous"></script>
   <!-- JS Main -->
   <script src="./js/script.js"></script>
 </body>
