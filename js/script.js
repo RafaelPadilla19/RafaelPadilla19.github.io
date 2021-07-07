@@ -12,11 +12,14 @@ _portfolio.addEventListener('click',(e)=>{
     }
 }); */
 
+
+
 // Cerrar un video al cerrar un modal.
 
+// let btnCerrar = document.getElementsByClassName('btn-close');
 
-let btnCerrar = document.getElementById('btn-close');
-btnCerrar.addEventListener('click',()=>{
+// accion de uno por uno, de seguir esta practica, no optimizaria.
+/* btnCerrar.addEventListener('click',()=>{
 
     let video= document.getElementById('video_youtube');
     let urlVideo= video.src;
@@ -34,4 +37,13 @@ modal.addEventListener('click',()=>{
     video.src='';
     video.src=urlVideo;
     
-});
+}); */
+
+function cerrarVideo(idBoton){
+    let video= document.getElementById(idBoton);
+    let urlVideo= video.src;
+
+    video.src='';
+    video.src=urlVideo;
+    console.log(video.src);
+}

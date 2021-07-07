@@ -33,9 +33,9 @@
       <div class="collapse navbar-collapse" id="mainNav">
         <div class="nav ms-auto flex-column align-content-end align-items-end flex-md-row text-danger">
           <a href="index.html" class="nav-link active">Inicio</a>
-          <a href="" class="nav-link">Acerca de</a>
-          <a href="" class="nav-link">Portafolio</a>
-          <a href="" class="nav-link">Contacto</a>
+          <a href="#acerca_de" class="nav-link">Acerca de</a>
+          <a href="#portfolio" class="nav-link">Portafolio</a>
+          <a href="#contac" class="nav-link">Contacto</a>
         </div>
       </div>
     </div>
@@ -82,9 +82,9 @@
 
     <hr>
     <!--Acerca de mi-->
-    <section class="row justify-content-around text-center" id="">
+    <section class="row justify-content-around text-center">
       <!--titulo-->
-      <h2 class="col-12 display-4 text-capitalize mb-3">
+      <h2 class="col-12 display-4 text-capitalize mb-3" id="acerca_de">
         Acerca de mi
       </h2>
       <h3 class="col-12 display-6 text-capitalize mb-3">
@@ -153,25 +153,27 @@
           aplicaciones web y de escritorio, tengo una certificación como desarrollador en JS y me apasiona aprender
           nuevas tecnologías.
         </p>
-        <a href="https://drive.google.com/file/d/1nWg_C7phUWQepb92WwuK-gTX3Ll2MmwB/view?usp=sharing" target="_blank" download="CV-RAFAEL" class="btn btn-danger rounded-pill px-4">Descargar CV</a>
+        <a href="https://drive.google.com/file/d/1nWg_C7phUWQepb92WwuK-gTX3Ll2MmwB/view?usp=sharing" target="_blank"
+          download="CV-RAFAEL" class="btn btn-danger rounded-pill px-4">Descargar CV</a>
       </div>
     </section>
     <hr />
 
     <!--Portafolio-->
-    <main class="row justify-content-center pt-0 pt-md-5 sec-portfolio-js">
+    <main class="row justify-content-center pt-0 pt-md-5 sec-portfolio-js" id="portfolio">
       <!--Columna 1-->
       <div class="col-10 col-md-4 order-2 order-md-1">
         <div class="row">
           <!--imagen 1-->
 
-          <a href="" class="col-12 mb-3 portfolio-item" data-bs-toggle="modal" data-bs-target="#modal-portfolio">
+          <a href="" class="col-12 mb-3 portfolio-item" data-bs-toggle="modal"
+            data-bs-target="#modal-portfolio-proyecto_1">
             <img src="img/portfolio/blogMicrosoft.png" alt="" class="w-100 img-btn-modal-js">
           </a>
 
           <!--imagen 2-->
-          <a href="" class="col-12 mb-3 portfolio-item" data-bs-toggle="modal" data-bs-target="#modal-portfolio">
-            <img src="img/portfolio/Portfolio-04.png" alt="" class="w-100 img-btn-modal-js">
+          <a href="" class="col-12 mb-3 portfolio-item" data-bs-toggle="modal" data-bs-target="#modal-portfolio-proyecto_2">
+            <img src="img/portfolio/QuienQuiere.png" alt="" class="w-100 img-btn-modal-js">
           </a>
 
           <!--imagen 3-->
@@ -190,7 +192,7 @@
 
           <!--Imagen 1-->
           <a href="#" class="col-12 mb-3 portfolio-item" data-bs-toggle="modal" data-bs-target="#modal-portfolio">
-            <img src="img/portfolio/Portfolio-05.png" alt="" class="w-100 img-btn-modal-js">
+            <img src="img/portfolio/DIAMONProyecto.png" alt="" class="w-100 img-btn-modal-js">
           </a>
 
           <!--Imagen 2-->
@@ -207,16 +209,20 @@
       </div>
 
       <!--modal general-->
-
-      <div class="col-9 modal fade seccion-modal" id="modal-portfolio">
+      <!--Modal proyecto 1-->
+      <div class="col-9 modal fade seccion-modal" id="modal-portfolio-proyecto_1" onClick="cerrarVideo('video_youtube-1')">
         <div class="modal-dialog position-relative modal-dialog-centered">
           <div class="modal-content p-4">
             <div class="d-flex justify-content-end">
-              <a href="#!" class="btn btn-close align-content-end text-center" data-bs-dismiss="modal" id='btn-close'></a>
+              <a href="#!" class="btn btn-close align-content-end text-center btn-close-js" data-bs-dismiss="modal"
+                id='btn-close-1' onClick="cerrarVideo('video_youtube-1')"></a>
             </div>
             <p class="h2 display-6 text-capitalize text-center">Blog sobre tecnologias Microsoft</p>
             <div class="d-flex justify-content-end" id="div-iframe">
-              <iframe class="video_youtube" width="560" height="315" src="https://www.youtube.com/embed/U5rAbNq9R7M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" id="video_youtube" allowfullscreen></iframe>
+              <iframe class="video_youtube" width="560" height="315" src="https://www.youtube.com/embed/U5rAbNq9R7M"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                id="video_youtube-1" allowfullscreen></iframe>
             </div>
 
             <p class="py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos dolores repellendus eaque.
@@ -228,6 +234,32 @@
           </div>
         </div>
       </div>
+
+      <!--Modal proyecto 2-->
+      <div class="col-9 modal fade seccion-modal" id="modal-portfolio-proyecto_2" onClick="cerrarVideo('video_youtube-2')">
+        <div class="modal-dialog position-relative modal-dialog-centered">
+          <div class="modal-content p-4">
+            <div class="d-flex justify-content-end">
+              <a href="#!" class="btn btn-close align-content-end text-center btn-close-js" data-bs-dismiss="modal" onClick="cerrarVideo('video_youtube-2')"></a>
+            </div>
+            <p class="h2 display-6 text-capitalize text-center">¿Quien quiere ser millonario?</p>
+            <div class="d-flex justify-content-end" id="div-iframe">
+              <iframe class="video_youtube" width="560" height="315" src="https://www.youtube.com/embed/HnC7OEkf1DA"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                id="video_youtube-2" allowfullscreen></iframe>
+            </div>
+
+            <p class="py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos dolores repellendus eaque.
+              Sequi natus laboriosam vero fugiat voluptatibus perferendis non nobis hic illo, quisquam eum blanditiis,
+              expedita quod tempora enim?</p>
+            <div class="d-flex justify-content-center">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </main>
 
   </div>
@@ -259,7 +291,7 @@
 
   <!--Contacto-->
 
-  <div class="container">
+  <div class="container" id="contac">
     <section class="row justify-content-center">
       <div class="col-9 col-lg-7 bg-gris text-center py-4 px-3 position-relative photo-frame">
         <p class="h6 text-muted fw-light">
