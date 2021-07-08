@@ -13,7 +13,6 @@ _portfolio.addEventListener('click',(e)=>{
 }); */
 
 
-
 // Cerrar un video al cerrar un modal.
 
 // let btnCerrar = document.getElementsByClassName('btn-close');
@@ -46,4 +45,16 @@ function cerrarVideo(idBoton){
     video.src='';
     video.src=urlVideo;
     console.log(video.src);
+}
+
+let btnVer= document.querySelector('.message');
+
+btnVer.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('btn')){
+        mensajeNoDisponible();
+    }
+})
+
+function mensajeNoDisponible(){
+    swal ( "Oops" ,  "Aun trabajo en esta parte!" ,  "info" );
 }
