@@ -51,10 +51,10 @@ let btnVer= document.querySelector('.message');
 
 btnVer.addEventListener('click',(e)=>{
     if(e.target.classList.contains('btn')){
-        mensajeNoDisponible();
+        mensajeNoDisponible("Aun trabajo en esta parte!");
     }
 })
 
-function mensajeNoDisponible(){
-    swal ( "Oops" ,  "Aun trabajo en esta parte!" ,  "info" );
+function mensajeNoDisponible(message){
+    swal ( "Oops" ,  message ,  "info" );
 }
