@@ -1,0 +1,66 @@
+<div class="tech-card group h-full flex flex-col overflow-hidden cursor-pointer" (click)="onCardClick()">
+  <figure class="relative h-56 w-full overflow-hidden shrink-0 border-b border-base-200/50">
+    <img [src]="project().imageUrl" [alt]="project().title"
+      class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
+      [class.object-cover]="project().type === 'video'"
+      [class.object-contain]="project().type !== 'video'"
+      [class.bg-base-300]="project().type !== 'video'"
+      [class.p-2]="project().type !== 'video'"
+      [class.object-top]="project().type === 'video'" />
+
+    <div class="absolute inset-0 bg-base-content/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+      @if (project().type === 'video') {
+        <button class="btn btn-circle bg-base-100 border-0 text-base-content btn-lg scale-90 group-hover:scale-100 transition-transform duration-300 drop-shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 ml-1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347c-.75.412-1.667-.13-1.667-.986V5.653Z" />
+          </svg>
+        </button>
+      } @else {
+        <span class="text-white font-semibold text-sm flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+          Ver proyecto
+        </span>
+      }
+    </div>
+  </figure>
+
+  <div class="card-body p-6 flex flex-col grow">
+    <h3 class="text-lg font-bold text-base-content line-clamp-1 group-hover:text-primary transition-colors" [title]="project().title">{{ project().title }}</h3>
+    <p class="text-base-content/70 text-sm line-clamp-3 my-3 leading-relaxed" [title]="project().description">{{ project().description }}</p>
+
+    <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-base-200">
+      @for (tech of project().technologies; track tech) {
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-base-200 text-base-content/80 border border-base-300">{{ tech }}</span>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Video Modal (only for video type) -->
+@if (project().type === 'video') {
+  <dialog [id]="modalId()" class="modal">
+    <div class="modal-box w-11/12 max-w-4xl p-0 overflow-hidden bg-black">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white z-50 bg-black/50 hover:bg-black" (click)="closeModal()">✕</button>
+      </form>
+      <div class="w-full aspect-video bg-base-300 flex items-center justify-center relative">
+        @if (isVideoActive()) {
+          <iframe [src]="safeVideoUrl()!" class="absolute inset-0 w-full h-full" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        } @else {
+          <span class="loading loading-spinner text-primary loading-lg"></span>
+        }
+      </div>
+      <div class="p-6 bg-base-100">
+        <h3 class="font-bold text-2xl mb-2">{{ project().title }}</h3>
+        <p class="text-base-content/80">{{ project().description }}</p>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button (click)="closeModal()">Cerrar</button>
+    </form>
+  </dialog>
+}
+

@@ -1,0 +1,66 @@
+<section class="min-h-screen pt-6 pb-20 bg-base-100">
+  <div class="container mx-auto px-4 max-w-6xl">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-xs font-bold tracking-widest text-primary uppercase mb-2">Mis Trabajos</h2>
+      <h3 class="text-3xl lg:text-4xl font-extrabold mb-4">Portafolio de Proyectos</h3>
+      <p class="text-base-content/70 max-w-2xl mx-auto text-sm">
+        Selección de proyectos profesionales y universitarios donde aplico diferentes tecnologías para resolver problemas reales.
+      </p>
+    </div>
+
+    <!-- Loading -->
+    @if (portfolioService.projectsResource.isLoading()) {
+      <div class="flex flex-col items-center justify-center py-20">
+        <span class="loading loading-ring loading-lg text-primary mb-4 w-16 h-16"></span>
+        <p class="text-base-content/60 font-medium animate-pulse">Cargando proyectos...</p>
+      </div>
+    }
+
+    <!-- Error -->
+    @if (portfolioService.projectsResource.error()) {
+      <div class="alert alert-error max-w-lg mx-auto shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <div>
+          <h3 class="font-bold">Error de Carga</h3>
+          <div class="text-sm">No se pudieron obtener los proyectos. Intenta de nuevo.</div>
+        </div>
+        <button class="btn btn-sm" (click)="portfolioService.projectsResource.reload()">Reintentar</button>
+      </div>
+    }
+
+    @if (portfolioService.projectsResource.value()) {
+      <!-- Proyectos Profesionales -->
+      @if (portfolioService.professionalProjects().length > 0) {
+        <div class="mb-16">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="text-xl">🏢</span>
+            <h4 class="text-xl font-bold text-base-content">Proyectos Profesionales</h4>
+            <div class="h-px flex-1 bg-base-content/10"></div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            @for (project of portfolioService.professionalProjects(); track project.id) {
+              <app-project-card [project]="project" />
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Proyectos Universitarios -->
+      @if (portfolioService.universityProjects().length > 0) {
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <span class="text-xl">🎓</span>
+            <h4 class="text-xl font-bold text-base-content">Proyectos Universitarios</h4>
+            <div class="h-px flex-1 bg-base-content/10"></div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            @for (project of portfolioService.universityProjects(); track project.id) {
+              <app-project-card [project]="project" />
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+</section>

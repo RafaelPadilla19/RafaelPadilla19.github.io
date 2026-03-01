@@ -1,0 +1,120 @@
+<section class="min-h-screen pt-6 pb-20 bg-base-100">
+  <div class="container mx-auto px-4 max-w-4xl">
+
+    <!-- Back button -->
+    <a routerLink="/portfolio" class="inline-flex items-center gap-2 text-sm text-base-content/50 hover:text-primary transition-colors mb-8 group">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 group-hover:-translate-x-1 transition-transform">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+      </svg>
+      Volver al portafolio
+    </a>
+
+    @if (project(); as proj) {
+      <!-- Header -->
+      <div class="mb-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-base-content tracking-tight mb-4">{{ proj.title }}</h1>
+
+        <!-- Tech pills -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          @for (tech of proj.technologies; track tech) {
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">{{ tech }}</span>
+          }
+        </div>
+
+        <!-- Links -->
+        <div class="flex gap-3">
+          @if (proj.playStoreUrl) {
+            <a [href]="proj.playStoreUrl" target="_blank" rel="noopener" class="btn btn-sm btn-primary rounded-full gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zM14.852 13.06l2.37 1.37-2.74 2.74-2.37-1.37 2.74-2.74zm5.648-3.268L17.13 11.7l-2.277-1.315L17.13 9.07l3.37 1.722zM5.095.752L14.852 10.51 12.11 13.25 2.355 3.493 5.095.752z"/>
+              </svg>
+              Google Play
+            </a>
+          }
+          @if (proj.githubUrl) {
+            <a [href]="proj.githubUrl" target="_blank" rel="noopener" class="btn btn-sm btn-outline rounded-full gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+          }
+        </div>
+      </div>
+
+      <!-- Cover image or Video -->
+      <div class="rounded-2xl overflow-hidden border border-base-content/10 mb-10 shadow-lg bg-black">
+        @if (safeVideoUrl()) {
+          <div class="aspect-video w-full">
+            <iframe [src]="safeVideoUrl()!" class="w-full h-full" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        } @else {
+          <img [src]="proj.imageUrl" [alt]="proj.title" class="w-full h-auto object-cover" />
+        }
+      </div>
+
+      <!-- Description -->
+      <div class="mb-12">
+        <h2 class="text-xl font-bold text-base-content mb-4">Acerca del proyecto</h2>
+        <div class="text-base-content/70 text-sm leading-relaxed whitespace-pre-line">
+          {{ proj.details || proj.description }}
+        </div>
+      </div>
+
+      <!-- Screenshots Showcase -->
+      @if (proj.screenshots && proj.screenshots.length > 0) {
+        <div class="mb-12">
+          <h2 class="text-xl font-bold text-base-content mb-8">Galería</h2>
+
+          <!-- Featured screenshot -->
+          @if (activeScreenshot()) {
+            <div class="flex justify-center mb-8">
+              <div class="relative">
+                <!-- Glow effect behind phone -->
+                <div class="absolute -inset-4 bg-gradient-to-b from-primary/20 via-primary/5 to-transparent rounded-[2.5rem] blur-2xl"></div>
+
+                <!-- Phone frame -->
+                <button
+                  (click)="selectScreenshot(activeScreenshot()!)"
+                  class="relative w-56 sm:w-64 rounded-[2rem] overflow-hidden border-[3px] border-base-content/20 shadow-2xl cursor-pointer hover:border-primary/40 transition-colors duration-300 bg-black">
+                  <img [src]="activeScreenshot()!" [alt]="proj.title" class="w-full h-auto" />
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- Thumbnail strip -->
+          <div class="flex justify-center gap-3">
+            @for (screenshot of proj.screenshots; track screenshot) {
+              <button
+                (click)="setActiveScreenshot(screenshot)"
+                class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all duration-200 shrink-0 cursor-pointer"
+                [class.border-primary]="activeScreenshot() === screenshot"
+                [class.shadow-lg]="activeScreenshot() === screenshot"
+                [class.scale-110]="activeScreenshot() === screenshot"
+                [class.border-base-content/10]="activeScreenshot() !== screenshot"
+                [class.opacity-60]="activeScreenshot() !== screenshot"
+                [class.hover:opacity-100]="activeScreenshot() !== screenshot">
+                <img [src]="screenshot" [alt]="proj.title + ' thumbnail'" class="w-full h-full object-cover object-top" />
+              </button>
+            }
+          </div>
+        </div>
+      }
+    } @else {
+      <!-- Loading / Not found -->
+      <div class="flex flex-col items-center justify-center py-20">
+        <span class="loading loading-ring loading-lg text-primary mb-4 w-16 h-16"></span>
+        <p class="text-base-content/60">Cargando proyecto...</p>
+      </div>
+    }
+  </div>
+
+  <!-- Lightbox -->
+  @if (selectedScreenshot()) {
+    <div class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-pointer" (click)="closeLightbox()">
+      <button class="absolute top-4 right-4 btn btn-circle btn-ghost text-white text-2xl hover:bg-white/10" aria-label="Cerrar">✕</button>
+      <img [src]="selectedScreenshot()!" alt="Screenshot ampliado" class="max-h-[90vh] max-w-full object-contain rounded-lg shadow-2xl" />
+    </div>
+  }
+</section>
