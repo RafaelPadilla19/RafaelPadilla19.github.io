@@ -50,4 +50,46 @@ Ingenier\xEDa y Middleware:
 \u2022 API RESTful: Despliegue de servicios escalables mediante una librer\xEDa interna personalizada que encapsula operaciones CRUD robustas.
 \u2022 Persistencia con Hibernate: Mapeo objeto-relacional (ORM) avanzado para una interacci\xF3n eficiente con la base de datos MySQL.
 \u2022 Arquitectura Desacoplada: El consumo se realiza mediante un cliente independiente (JSP) que interact\xFAa con la capa de negocio a trav\xE9s de Web Services Clients, asegurando una separaci\xF3n clara de responsabilidades.
-\u2022 Interfaz Din\xE1mica: Implementaci\xF3n visual con Bootstrap y CSS3 para una navegaci\xF3n intuitiva y adaptable.`,imageUrl:"img/portfolio/ecommer.png",videoUrl:"https://www.youtube.com/embed/NxJVowGU8Ys",technologies:["Java","Hibernate (HQL)","REST Web Services","MySQL","JSP","Bootstrap"],category:"universitario",type:"web-app"}],c=class o{projectsResource=s({params:()=>({}),stream:()=>r(d).pipe(t(300))});totalProjects=a(()=>this.projectsResource.value()?.length??0);professionalProjects=a(()=>this.projectsResource.value()?.filter(e=>e.category==="profesional")??[]);universityProjects=a(()=>this.projectsResource.value()?.filter(e=>e.category==="universitario")??[]);getProjectById(e){return this.projectsResource.value()?.find(i=>i.id===e)}static \u0275fac=function(i){return new(i||o)};static \u0275prov=n({token:o,factory:o.\u0275fac,providedIn:"root"})};export{c as a};
+\u2022 Interfaz Din\xE1mica: Implementaci\xF3n visual con Bootstrap y CSS3 para una navegaci\xF3n intuitiva y adaptable.`,imageUrl:"img/portfolio/ecommer.png",videoUrl:"https://www.youtube.com/embed/NxJVowGU8Ys",technologies:["Java","Hibernate (HQL)","REST Web Services","MySQL","JSP","Bootstrap"],category:"universitario",type:"web-app"},{id:12,title:"RMapper - Micro mapeador de objetos para .NET",description:"Librer\xEDa NuGet ligera para mapear DTOs y entidades por nombre/tipo, con soporte de exclusi\xF3n mediante [IgnoreMap].",details:"Micro mapeador de objetos para .NET enfocado en simplicidad y bajo peso. Permite mapear DTOs a entidades por nombre y tipo, y excluye propiedades con [IgnoreMap]. Ideal para capas de aplicaci\xF3n donde quieres evitar c\xF3digo repetitivo de transformaci\xF3n.",codeSample:`using RMapper.Core.Attributes;
+using RMapper.Core.Interfaces;
+using RMapper.Reflection;
+
+public class UserDto
+{
+    public string Nombre { get; set; }
+
+    [IgnoreMap] // No se mapeara
+    public int Edad { get; set; }
+}
+
+public class Usuario
+{
+    public string Nombre { get; set; }
+    public int Edad { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        var dto = new UserDto { Nombre = "Carlos", Edad = 30 };
+
+        IMapper mapper = new SimpleMapper();
+        var usuario = mapper.Map<UserDto, Usuario>(dto);
+
+        Console.WriteLine(usuario.Nombre); // Carlos
+        Console.WriteLine(usuario.Edad);   // 0 (ignorado por [IgnoreMap])
+    }
+}`,quickTestCommand:`dotnet new console -n RMapper.Demo
+cd RMapper.Demo
+dotnet add package RMapper
+// Abre Program.cs y pega el ejemplo de "Uso basico"
+dotnet run`,ignoreMapExample:`public class ProductoDto
+{
+    public string Nombre { get; set; }
+
+    [IgnoreMap]
+    public decimal Precio { get; set; }
+}`,ignoreMapResult:"En el objeto destino, Precio queda con su valor por defecto (p. ej. 0m).",howItWorksSteps:["Leer las propiedades publicas de origen y destino.","Comparar por nombre y tipo.","Ignorar las que tengan [IgnoreMap].","Copiar valores en el objeto destino."],features:["Mapeo automatico por nombre y tipo de propiedad.","Ignora propiedades decoradas con [IgnoreMap].","API minima: IMapper y SimpleMapper.","Cero dependencias externas.","Compilado para .NET Standard 2.0 y .NET 8.0."],requirements:["Cualquier proyecto en .NET Framework 4.6.1+, .NET Core 2.0+, .NET 5/6/7/8+.","No requiere configuracion adicional."],installationDotnetCli:"dotnet add package RMapper",installationPackageManager:"Install-Package RMapper",installationPackageReference:`<ItemGroup>
+  <PackageReference Include="RMapper" Version="1.*" />
+</ItemGroup>`,imageUrl:"img/portfolio/rmapper/rmapper-cover.svg",technologies:["C#",".NET 8",".NET Standard 2.0","Reflection","NuGet"],githubUrl:"https://www.nuget.org/packages/RMapper",category:"profesional",type:"web-app"}],c=class o{projectsResource=s({params:()=>({}),stream:()=>r(d).pipe(t(300))});totalProjects=a(()=>this.projectsResource.value()?.length??0);professionalProjects=a(()=>this.projectsResource.value()?.filter(e=>e.category==="profesional")??[]);universityProjects=a(()=>this.projectsResource.value()?.filter(e=>e.category==="universitario")??[]);getProjectById(e){return this.projectsResource.value()?.find(i=>i.id===e)}static \u0275fac=function(i){return new(i||o)};static \u0275prov=n({token:o,factory:o.\u0275fac,providedIn:"root"})};export{c as a};
