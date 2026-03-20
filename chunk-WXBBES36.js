@@ -1,4 +1,4 @@
-import{a as s}from"./chunk-VCOC4SDF.js";import{H as n,j as r,tb as a,x as t}from"./chunk-TYH54ORV.js";var d=[{id:11,title:"Sistema ERP & POS Multi-Tenant con Facturaci\xF3n Electr\xF3nica (MH)",description:"Sistema empresarial SaaS (Multi-Tenant) con POS, compras, inventario y facturaci\xF3n electr\xF3nica nativa conectada al MH.",details:`Un robusto sistema de Planificaci\xF3n de Recursos Empresariales (ERP) y Punto de Venta (POS) dise\xF1ado bajo una arquitectura Multi-Tenant, construido con tecnolog\xEDas de vanguardia. El sistema gestiona todo el ciclo comercial de una empresa: desde compras, inventario y almacenes, hasta facturaci\xF3n electr\xF3nica conectada directamente con el Ministerio de Hacienda (MH), env\xEDo automatizado de correos y generaci\xF3n de representaciones gr\xE1ficas (Tickets/PDF).
+import{a as s}from"./chunk-VCOC4SDF.js";import{H as n,j as i,tb as a,x as t}from"./chunk-TYH54ORV.js";var d=[{id:11,title:"Sistema ERP & POS Multi-Tenant con Facturaci\xF3n Electr\xF3nica (MH)",description:"Sistema empresarial SaaS (Multi-Tenant) con POS, compras, inventario y facturaci\xF3n electr\xF3nica nativa conectada al MH.",details:`Un robusto sistema de Planificaci\xF3n de Recursos Empresariales (ERP) y Punto de Venta (POS) dise\xF1ado bajo una arquitectura Multi-Tenant, construido con tecnolog\xEDas de vanguardia. El sistema gestiona todo el ciclo comercial de una empresa: desde compras, inventario y almacenes, hasta facturaci\xF3n electr\xF3nica conectada directamente con el Ministerio de Hacienda (MH), env\xEDo automatizado de correos y generaci\xF3n de representaciones gr\xE1ficas (Tickets/PDF).
 
 Destaca por contar con su propio firmador electr\xF3nico integrado nativamente en el n\xFAcleo del Backend .NET (Firmador Multi-Tenant), asegurando inmediatez, bajo consumo de recursos y la correcta transmisi\xF3n y avalamiento criptogr\xE1fico de los Documentos Tributarios Electr\xF3nicos (DTE) sin depender de servicios de terceros.
 
@@ -92,4 +92,54 @@ dotnet run`,howItWorksIntro:"RMapper usa Reflection para:",howItWorksSteps:["Lee
 
     [IgnoreMap]
     public decimal Precio { get; set; }
-}`,result:"En el objeto destino, Precio queda con su valor por defecto (p. ej. 0m)."}],imageUrl:"img/portfolio/rmapper/rmapper-cover.svg",technologies:["C#",".NET 8",".NET Standard 2.0","Reflection","NuGet"],nugetUrl:"https://www.nuget.org/packages/RMapper",category:"profesional",type:"web-app"}],c=class o{projectsResource=s({params:()=>({}),stream:()=>r(d).pipe(t(300))});totalProjects=a(()=>this.projectsResource.value()?.length??0);professionalProjects=a(()=>this.projectsResource.value()?.filter(e=>e.category==="profesional")??[]);universityProjects=a(()=>this.projectsResource.value()?.filter(e=>e.category==="universitario")??[]);getProjectById(e){return this.projectsResource.value()?.find(i=>i.id===e)}static \u0275fac=function(i){return new(i||o)};static \u0275prov=n({token:o,factory:o.\u0275fac,providedIn:"root"})};export{c as a};
+}`,result:"En el objeto destino, Precio queda con su valor por defecto (p. ej. 0m)."}],imageUrl:"img/portfolio/rmapper/rmapper-cover.svg",technologies:["C#",".NET 8",".NET Standard 2.0","Reflection","NuGet"],nugetUrl:"https://www.nuget.org/packages/RMapper",category:"profesional",type:"web-app"},{id:13,title:"Prix-R9 \u2014 CLI de Pruebas de Carga HTTP/REST",description:"Herramienta CLI para pruebas de carga con ramp-up, multipart, escenarios encadenados por steps y extracci\xF3n de valores entre requests.",details:`Prix-R9 es una herramienta de l\xEDnea de comandos dise\xF1ada para ejecutar pruebas de carga y estr\xE9s sobre APIs HTTP/REST. Permite definir escenarios simples de un solo endpoint o escenarios complejos encadenados mediante steps, donde cada paso puede extraer valores del response JSON y reutilizarlos en los siguientes pasos.
+
+Incluye un importador de cURL (prix-r9-curl) que convierte requests exportados desde el navegador, Postman o Swagger a configuraciones JSON listas para usar como bloques base de escenarios multi-step.
+
+Al finalizar cada ejecuci\xF3n, genera un reporte.txt con m\xE9tricas detalladas: iteraciones totales, exitosas y fallidas, throughput real (iter/s y req/s), latencia por iteraci\xF3n, latencia agregada por request y m\xE9tricas por step incluyendo c\xF3digos de estado HTTP.`,codeSample:`{
+  "name": "Carga encadenada",
+  "startRate": 2,
+  "targetRate": 5,
+  "rampUpTime": 5,
+  "duration": 10,
+  "steps": [
+    {
+      "name": "uploadProcess",
+      "url": "https://api.example.test/blob/upload",
+      "method": "post",
+      "headers": {
+        "Authorization": "Bearer {{uuid}}"
+      },
+      "file": "./Plantilla.csv",
+      "filekey": "File",
+      "body": { "TypeFile": "1" },
+      "extract": {
+        "processId": "$.uploadFileProcessId"
+      }
+    },
+    {
+      "name": "executeProcess",
+      "url": "https://api.example.test/approvals/Execute",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "UploadFileProcessId": "{{processId}}",
+        "AprovalStatus": 1
+      }
+    }
+  ]
+}`,quickTestCommand:`npm install -g prix-r9
+prix-r9 --config mi-config.json
+prix-r9 --prompt
+prix-r9-curl -i mi-curl.txt -o endpoint.json`,howItWorksIntro:"Flujo de ejecuci\xF3n por iteraci\xF3n:",howItWorksSteps:["Cada iteraci\xF3n crea su propio contexto aislado de variables.","Se ejecutan los steps en orden secuencial dentro de la iteraci\xF3n.","extract guarda valores del response JSON para los steps siguientes.","Si un step falla (HTTP, red o extracci\xF3n), la iteraci\xF3n termina y los steps restantes quedan omitidos por cascade.","Al finalizar, genera reporte.txt con m\xE9tricas generales y por step."],features:["Pruebas de carga con rate fijo o ramp-up progresivo (startRate \u2192 targetRate).","Escenarios encadenados con steps y extracci\xF3n de valores entre requests.","Soporte multipart con archivo (file + filekey) sin configuraci\xF3n manual de boundary.","Variables din\xE1micas: {{uuid}}, {{timestamp}}, {{random_number}}.","Importador prix-r9-curl para convertir cURL a configuraci\xF3n JSON.","Soporte HTTPS local con certificados autofirmados (insecureHttps).","Reporte detallado con m\xE9tricas por iteraci\xF3n y por step.","Modo interactivo con --prompt para generar configuraciones."],installationMethods:[{label:"npm (global)",command:"npm install -g prix-r9",style:"terminal"}],customSections:[{title:"Extracci\xF3n de valores entre steps",intro:"extract acepta un mapa nombreVariable \u2192 ruta JSONPath para reutilizar valores en steps posteriores.",code:`"extract": {
+  "uploadFileProcessId": "$.uploadFileProcessId",
+  "primerDetalle": "$.data[0].id"
+}`,result:"Rutas soportadas: $.propiedad, $.objeto.hijo, $.items[0].id, $['propiedad-rara']. Las rutas son case-sensitive."},{title:"Variables din\xE1micas",intro:"Se pueden usar en url, headers, body, file y filekey.",code:`"headers": {
+  "Authorization": "Bearer {{uuid}}",
+  "X-Request-ID": "{{uuid}}"
+},
+"body": {
+  "correo": "prueba_{{timestamp}}@example.test"
+}`,result:"Disponibles: {{uuid}}, {{timestamp}} y {{random_number}}. Se generan por cada iteraci\xF3n."}],imageUrl:"img/portfolio/prix-r9/prix-r9-cover.svg",technologies:["Node.js","JavaScript","CLI","Axios","Commander.js"],npmUrl:"https://www.npmjs.com/package/prix-r9",category:"profesional",type:"web-app"}],c=class o{projectsResource=s({params:()=>({}),stream:()=>i(d).pipe(t(300))});totalProjects=a(()=>this.projectsResource.value()?.length??0);professionalProjects=a(()=>this.projectsResource.value()?.filter(e=>e.category==="profesional")??[]);universityProjects=a(()=>this.projectsResource.value()?.filter(e=>e.category==="universitario")??[]);getProjectById(e){return this.projectsResource.value()?.find(r=>r.id===e)}static \u0275fac=function(r){return new(r||o)};static \u0275prov=n({token:o,factory:o.\u0275fac,providedIn:"root"})};export{c as a};
