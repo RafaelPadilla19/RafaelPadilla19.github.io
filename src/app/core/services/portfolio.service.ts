@@ -67,7 +67,7 @@ Destaca por contar con su propio firmador electrónico integrado nativamente en 
 🔐 Firmador Nativo: Estructuración y firma criptográfica (.p12) de DTEs en milisegundos directamente en el núcleo de .NET, eliminando dependencias externas.
 🏛️ Conexión MH: Pipeline legal completo (Auth oAuth2, Emisión de datos y Recepción de sellos) cumpliendo los Schemas JSON oficiales.
 📧 Notificaciones: Envío asíncrono de correos (SMTP) con XML/PDF y generación de representaciones gráficas (Tickets).`,
-    imageUrl: 'img/portfolio/pos-fe/POS.png',
+    imageUrl: 'img/portfolio/pos-fe/POS.webp',
     videoUrl: 'https://www.youtube.com/embed/HyVkwORFh1k?si=uWccBOJ2dCaYLNEv',
     technologies: ['Angular 21', 'Signals', 'PrimeNG', 'Tailwind CSS v4', '.NET 9', 'C#', 'PostgreSQL', 'Entity Framework Core'],
     category: 'profesional',
@@ -78,14 +78,14 @@ Destaca por contar con su propio firmador electrónico integrado nativamente en 
     title: 'VoxU — Red Social Universitaria',
     description: 'App móvil anónima para estudiantes universitarios de El Salvador.',
     details: 'VoxU es una aplicación móvil multiplataforma diseñada para conectar a estudiantes universitarios de El Salvador de forma segura y anónima. Permite compartir experiencias, evaluar profesores y acceder a recursos académicos, todo dentro de una comunidad verificada por correo institucional (.edu.sv).\n\nCaracterísticas principales:\n• Auth segura con verificación OTP por correo institucional\n• Feed anónimo con sistema de alertas tipo "Semáforo" (Alta/Media/Baja)\n• Radar de Profesores con calificaciones 1-5 estrellas\n• Bóveda de Recursos para compartir documentos académicos\n• Perfil anónimo con avatar aleatorio vía DiceBear API\n• Catálogo de 50+ universidades y 50+ carreras de El Salvador',
-    imageUrl: 'img/portfolio/voxu/voxu-header.png',
+    imageUrl: 'img/portfolio/voxu/voxu-header.webp',
     screenshots: [
-      'img/portfolio/voxu/image1.png',
-      'img/portfolio/voxu/image2.png',
-      'img/portfolio/voxu/image3.png',
-      'img/portfolio/voxu/image4.png',
-      'img/portfolio/voxu/image5.png',
-      'img/portfolio/voxu/image6.png'
+      'img/portfolio/voxu/image1.webp',
+      'img/portfolio/voxu/image2.webp',
+      'img/portfolio/voxu/image3.webp',
+      'img/portfolio/voxu/image4.webp',
+      'img/portfolio/voxu/image5.webp',
+      'img/portfolio/voxu/image6.webp'
     ],
     technologies: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL', 'GoRouter', 'Firebase'],
     category: 'profesional',
@@ -108,7 +108,7 @@ Destaca por contar con su propio firmador electrónico integrado nativamente en 
     title: 'Millonario Challenge: C# Edition',
     description: 'Simulador interactivo basado en el icónico concurso de trivia, con lógica de progresión de premios y sistema de comodines dinámicos.',
     details: 'Este proyecto recrea la experiencia completa del clásico juego "¿Quién quiere ser millonario?". Desarrollado íntegramente en C# utilizando el ecosistema .NET Framework, el juego pone a prueba la toma de decisiones y el conocimiento del usuario bajo presión.\n\nMecánicas de Juego:\n• Lógica de Progresión: Algoritmo de dificultad incremental para la selección de preguntas.\n• Sistema de Comodines: Implementación de tres tipos de ayudas estratégicas que alteran el flujo del juego en tiempo real.\n• Gestión de Riesgos: Los jugadores deben decidir entre asegurar su premio base o arriesgarlo todo por el gran premio.\n• Arquitectura: Aplicación robusta de escritorio (Windows Forms) con una clara separación entre la lógica del motor de preguntas y la interfaz de usuario.',
-    imageUrl: 'img/portfolio/QuienQuiere.png',
+    imageUrl: 'img/portfolio/QuienQuiere.webp',
     videoUrl: 'https://www.youtube.com/embed/HnC7OEkf1DA',
     technologies: ['C#', '.NET Framework', 'Windows Forms'],
     category: 'universitario',
@@ -140,7 +140,7 @@ Destaca por contar con su propio firmador electrónico integrado nativamente en 
     title: 'E-commerce En Línea: Arquitectura Distribuida',
     description: 'Ecosistema de comercio electrónico basado en servicios RESTful y persistencia avanzada con Hibernate ORM.',
     details: 'Este sistema representa una solución integral de e-commerce diseñada bajo una arquitectura desacoplada de cliente-servidor. El núcleo del proyecto es una API RESTful desarrollada en Java que utiliza Hibernate como motor de persistencia, facilitando la manipulación de datos mediante HQL (Hibernate Query Language).\n\nIngeniería y Middleware:\n• API RESTful: Despliegue de servicios escalables mediante una librería interna personalizada que encapsula operaciones CRUD robustas.\n• Persistencia con Hibernate: Mapeo objeto-relacional (ORM) avanzado para una interacción eficiente con la base de datos MySQL.\n• Arquitectura Desacoplada: El consumo se realiza mediante un cliente independiente (JSP) que interactúa con la capa de negocio a través de Web Services Clients, asegurando una separación clara de responsabilidades.\n• Interfaz Dinámica: Implementación visual con Bootstrap y CSS3 para una navegación intuitiva y adaptable.',
-    imageUrl: 'img/portfolio/ecommer.png',
+    imageUrl: 'img/portfolio/ecommer.webp',
     videoUrl: 'https://www.youtube.com/embed/NxJVowGU8Ys',
     technologies: ['Java', 'Hibernate (HQL)', 'REST Web Services', 'MySQL', 'JSP', 'Bootstrap'],
     category: 'universitario',

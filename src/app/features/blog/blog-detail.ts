@@ -1,8 +1,9 @@
-import { Component, computed, inject, signal, effect, HostListener } from '@angular/core';
-import { Title, Meta, DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component, computed, inject, signal, effect } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { BlogService, BlogPost } from '../../core/services/blog.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -13,8 +14,7 @@ import { BlogService, BlogPost } from '../../core/services/blog.service';
 export default class BlogDetail {
   private route = inject(ActivatedRoute);
   private blogService = inject(BlogService);
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+  private seo = inject(SeoService);
   private sanitizer = inject(DomSanitizer);
   private svgCache = new Map<string, SafeHtml>();
 
@@ -43,8 +43,15 @@ export default class BlogDetail {
     effect(() => {
       const post = this.post();
       if (post) {
-        this.titleService.setTitle(`${post.title} | Rafael Padilla`);
-        this.metaService.updateTag({ name: 'description', content: post.excerpt });
+        this.seo.update({
+          title: post.title,
+          description: post.excerpt,
+          path: `blog/${post.id}`,
+          image: post.imageUrl,
+          type: 'article',
+          publishedAt: post.date,
+          tags: post.tags
+        });
       }
     });
   }

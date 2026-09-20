@@ -1,7 +1,8 @@
 import { Component, computed, inject, signal, effect, HostListener } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl, Title, Meta } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PortfolioService, Project } from '../../core/services/portfolio.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-project-detail',
@@ -12,8 +13,7 @@ export default class ProjectDetail {
   private route = inject(ActivatedRoute);
   private portfolioService = inject(PortfolioService);
   private sanitizer = inject(DomSanitizer);
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+  private seo = inject(SeoService);
 
   public projectId = signal<number>(0);
 
@@ -42,8 +42,12 @@ export default class ProjectDetail {
         this.activeScreenshot.set(proj.screenshots[0]);
       }
       if (proj) {
-        this.titleService.setTitle(`${proj.title} | Rafael Padilla`);
-        this.metaService.updateTag({ name: 'description', content: proj.description });
+        this.seo.update({
+          title: proj.title,
+          description: proj.description,
+          path: `portfolio/${proj.id}`,
+          image: proj.imageUrl
+        });
       }
     });
   }
