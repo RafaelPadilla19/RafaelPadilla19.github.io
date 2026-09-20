@@ -5,6 +5,18 @@
   <title>Rafael Padilla | Senior Software Engineer</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Aplica el tema antes del primer paint para evitar el flash blanco en modo oscuro.
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'dark' && t !== 'light') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 
   <meta name="description" content="Software Engineer con +5 años construyendo sistemas backend escalables, APIs y microservicios para productos fintech y empresariales. Arquitectura limpia, .NET y Angular.">
   <meta name="author" content="Rafael Padilla">
@@ -34,8 +46,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Original Favicon -->
-  <link rel="icon" type="image/png" href="recursos/Logo-Letra/favicon.png">
+  <!-- Iconos -->
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <script type="application/ld+json">
     {

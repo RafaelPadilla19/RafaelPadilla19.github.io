@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { delay, of } from 'rxjs';
+import { of } from 'rxjs';
 import { NORMATIVA_FIGURES, NORMATIVA_STACK, NORMATIVA_CASES } from '../../features/blog/content/normativa-figures';
 
 export type BlogContentBlock =
@@ -320,7 +320,7 @@ export class BlogService {
 
   public postsResource = rxResource({
     params: () => ({}),
-    stream: () => of(MOCK_POSTS).pipe(delay(400))
+    stream: () => of(MOCK_POSTS)
   });
 
   public getPostById(id: number): BlogPost | undefined {

@@ -1,6 +1,6 @@
 import { Injectable, computed } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { delay, of } from 'rxjs';
+import { of } from 'rxjs';
 
 export type ProjectType = 'video' | 'mobile-app' | 'web-app' | 'desktop-app' | 'cover';
 
@@ -323,7 +323,7 @@ export class PortfolioService {
 
   public projectsResource = rxResource({
     params: () => ({}),
-    stream: () => of(MOCK_PROJECTS).pipe(delay(300))
+    stream: () => of(MOCK_PROJECTS)
   });
 
   public totalProjects = computed(() => this.projectsResource.value()?.length ?? 0);
