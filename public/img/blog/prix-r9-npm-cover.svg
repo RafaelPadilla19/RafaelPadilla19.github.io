@@ -3,11 +3,11 @@
   <rect width="22" height="900" fill="#A2443A"/>
   <rect x="90" y="56" width="1454" height="788" fill="none" stroke="#D5DDE4" stroke-width="2"/>
 
-  <text x="150" y="238" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="700" letter-spacing="7" fill="#A2443A">OPEN SOURCE</text>
+  <text x="150" y="238" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="700" letter-spacing="7" fill="#A2443A">HERRAMIENTAS</text>
   <rect x="150" y="268" width="300" height="4" fill="#A2443A"/>
 
-  <text x="150" y="400" font-family="Georgia,'Times New Roman',serif" font-size="102" font-weight="600" fill="#1C2B3A">De cero a NPM:</text>
-  <text x="150" y="518" font-family="Georgia,'Times New Roman',serif" font-size="102" font-weight="600" fill="#1C2B3A">cómo creé Prix-R9</text>
+  <text x="150" y="400" font-family="Georgia,'Times New Roman',serif" font-size="102" font-weight="600" fill="#1C2B3A">Prix-R9: mi CLI de</text>
+  <text x="150" y="518" font-family="Georgia,'Times New Roman',serif" font-size="102" font-weight="600" fill="#1C2B3A">pruebas de carga</text>
 
   <line x1="150" y1="734" x2="1484" y2="734" stroke="#D5DDE4" stroke-width="2"/>
   <text x="150" y="784" font-family="system-ui,-apple-system,sans-serif" font-size="26" fill="#5B6B7A">Enero 2026</text>

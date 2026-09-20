@@ -30,7 +30,7 @@ const MOCK_POSTS: BlogPost[] = [
     category: 'Arquitectura de software',
     tags: ['IA', 'RAG', 'Arquitectura', 'C4', '.NET', 'Python', 'Azure'],
     readTime: 12,
-    imageUrl: 'img/blog/asistente-legal-ia-cover.svg',
+    imageUrl: 'img/blog/asistente-legal-ia-cover.svg?v=2',
     content: [
       { type: 'text', content: 'Conectar un modelo de lenguaje a una carpeta de PDFs toma una tarde. El resultado redacta bien, responde con seguridad y, tarde o temprano, cita un artículo que no existe. En la mayoría de dominios eso es una molestia. En derecho es un problema serio: una norma derogada presentada como vigente puede costarle un caso a alguien.' },
       { type: 'text', content: 'Lo que sigue es una arquitectura para un asistente legal diseñado para evitar ese tipo de fallas. El ejemplo se llama Normativa y cubre legislación centroamericana, aunque las mismas decisiones sirven para cumplimiento bancario, seguros o soporte técnico. En todos esos casos la respuesta tiene que poder rastrearse hasta un documento.' },
@@ -226,7 +226,7 @@ con alertas antes de llegar al límite.` },
     category: 'IA & Productividad',
     tags: ['IA', 'Claude', 'Angular', '.NET', 'Productividad'],
     readTime: 6,
-    imageUrl: 'img/blog/ia-desarrollo-cover.svg',
+    imageUrl: 'img/blog/ia-desarrollo-cover.svg?v=2',
     content: [
       { type: 'text', content: 'Hace un año veía la IA generativa como una herramienta curiosa para generar texto. Hoy es parte integral de mi flujo de desarrollo. Desde la arquitectura de mi sistema ERP/POS Multi-Tenant hasta la creación de Prix-R9, la IA ha cambiado fundamentalmente cómo escribo, reviso y diseño software.' },
 
@@ -275,7 +275,7 @@ con alertas antes de llegar al límite.` },
     category: 'Arquitectura',
     tags: ['.NET 9', 'Multi-Tenant', 'ERP', 'Clean Architecture', 'PostgreSQL'],
     readTime: 8,
-    imageUrl: 'img/blog/multi-tenant-cover.svg',
+    imageUrl: 'img/blog/multi-tenant-cover.svg?v=2',
     content: [
       { type: 'text', content: 'Construir un sistema ERP/POS Multi-Tenant no es solo "agregar un TenantId a las tablas". Es diseñar desde cero para que múltiples negocios coexistan de forma segura, eficiente y escalable en una misma infraestructura. Estas son las lecciones que aprendí construyendo el mío con .NET 9 y PostgreSQL.' },
 
@@ -344,15 +344,16 @@ con alertas antes de llegar al límite.` },
   },
   {
     id: 3,
-    title: 'De cero a NPM: cómo creé Prix-R9 y por qué cada dev debería publicar un paquete',
-    excerpt: 'La historia detrás de Prix-R9, mi CLI de pruebas de carga, y lo que aprendí publicando mi primer paquete en NPM.',
+    title: 'Prix-R9: cómo diseñé mi CLI de pruebas de carga y lo publiqué en NPM',
+    excerpt: 'La historia detrás de Prix-R9: por qué ninguna herramienta existente me servía, cómo lo diseñé y qué aprendí distribuyéndolo en NPM. Gratuito de usar, con el código en mis manos.',
     date: '2026-01-20',
-    category: 'Open Source',
-    tags: ['Node.js', 'NPM', 'CLI', 'Open Source', 'Pruebas de carga'],
-    readTime: 5,
-    imageUrl: 'img/blog/prix-r9-npm-cover.svg',
+    category: 'Herramientas',
+    tags: ['Node.js', 'NPM', 'CLI', 'Pruebas de carga', 'DevTools'],
+    readTime: 6,
+    imageUrl: 'img/blog/prix-r9-npm-cover.svg?v=2',
     content: [
       { type: 'text', content: 'Todo empezó con una frustración: necesitaba probar la carga de un endpoint que requería dos requests encadenados (subir archivo → ejecutar proceso) y ninguna herramienta existente lo hacía simple. JMeter es poderoso pero pesado, k6 requiere escribir scripts en JavaScript, y ab/wrk solo soportan requests simples. Así nació Prix-R9.' },
+      { type: 'text', content: 'Antes de Prix-R9 ya había publicado RMapper, un micro mapeador para .NET en NuGet, así que no era mi primer paquete ni mi primera vez distribuyendo una herramienta propia. Lo nuevo aquí era el ecosistema: NPM, un binario de línea de comandos y usuarios que lo instalan sin leer una línea de mi código.' },
 
       { type: 'heading', content: 'El problema real' },
       { type: 'text', content: 'En mi trabajo con el sistema ERP/POS, el flujo de carga de archivos era: 1) subir un CSV con movimientos, 2) extraer el processId del response, 3) enviar ese processId al endpoint de aprobación. Necesitaba simular 50 usuarios concurrentes ejecutando este flujo completo. Las herramientas existentes requerían scripting complejo o no soportaban la extracción de valores entre requests.' },
@@ -403,12 +404,18 @@ prix-r9 --config escenario.json` },
         'El README es tu landing page: si alguien no entiende qué hace tu paquete en 30 segundos, seguirá buscando. Ejemplos concretos > descripciones abstractas.',
         'bin en package.json es magia: definir "prix-r9": "index.js" convierte tu script en un comando global. npm install -g y está disponible en la terminal.',
         'Testear el paquete antes de publicar: npm pack --dry-run te muestra exactamente qué archivos se incluirán. Evita publicar node_modules o archivos de desarrollo.',
+        'Publicar no obliga a abrir el repositorio: lo que subes es el paquete instalable, no tu historial de commits. Publicar y liberar el código son dos decisiones separadas.',
         'No necesitas un monorepo ni CI/CD sofisticado para empezar: npm publish es suficiente para un paquete personal.'
       ] },
 
-      { type: 'heading', content: 'Por qué todo dev debería publicar un paquete' },
+      { type: 'heading', content: 'Gratis no es lo mismo que open source' },
+      { type: 'text', content: 'Conviene separar dos cosas que suelen confundirse. Prix-R9 es gratuito: cualquiera lo instala con npm install -g prix-r9 y lo usa sin pagar ni pedir permiso. Pero no es un proyecto open source: el código es mío, no hay repositorio público ni licencia que ceda derechos de modificación y redistribución.' },
+      { type: 'text', content: 'No es una postura ideológica, es una decisión práctica. Mantener un proyecto abierto es un trabajo en sí mismo: issues, pull requests, discusiones de diseño y compatibilidad hacia atrás con gente que no conoces. Prefiero invertir ese tiempo en que la herramienta resuelva bien el problema para el que la escribí. Si algún día el proyecto justifica esa inversión, abrir el código sigue siendo una puerta que puedo cruzar; cerrar uno ya abierto no lo es.' },
+      { type: 'text', content: 'Lo que sí asumo es la contraparte: si la herramienta es gratuita y cerrada, el soporte y la documentación son responsabilidad mía. Un README honesto sobre qué hace y qué no hace vale más que un repositorio público abandonado.' },
+
+      { type: 'heading', content: 'Por qué vale la pena publicar tus herramientas' },
       { type: 'text', content: 'Publicar un paquete te obliga a pensar como consumidor de tu propio código. Tienes que documentar, versionar, manejar edge cases y diseñar una API que alguien más pueda entender. Es el mejor ejercicio de ingeniería de software que puedes hacer fuera de tu trabajo diario.' },
-      { type: 'text', content: 'No necesitas crear la próxima librería que usarán millones. RMapper (mi micro mapeador para .NET en NuGet) y Prix-R9 son herramientas pequeñas que resuelven problemas específicos que yo tenía. Y eso es suficiente: si te resolvió un problema a ti, probablemente le resuelva el mismo problema a alguien más.' },
+      { type: 'text', content: 'No necesitas crear la próxima librería que usarán millones. RMapper y Prix-R9 son herramientas pequeñas que resuelven problemas específicos que yo tenía. Y eso es suficiente: si te resolvió un problema a ti, probablemente le resuelva el mismo problema a alguien más.' },
 
       { type: 'heading', content: 'Lo que sigue' },
       { type: 'text', content: 'Prix-R9 está en v2.0.4 y sigo iterando. Las próximas features incluyen reportes en formato HTML con gráficas de latencia y un modo watch para re-ejecutar pruebas automáticamente cuando cambia la configuración. Si te interesa probarlo: npm install -g prix-r9.' }
