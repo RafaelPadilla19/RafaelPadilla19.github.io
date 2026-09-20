@@ -1,58 +1,16 @@
 <svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0B1F26"/>
-      <stop offset="1" stop-color="#132E38"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="240" y1="300" x2="1360" y2="640" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2DD4BF"/>
-      <stop offset="1" stop-color="#0F7C77"/>
-    </linearGradient>
-    <filter id="glow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feGaussianBlur stdDeviation="40"/>
-    </filter>
-  </defs>
+  <rect width="1600" height="900" fill="#F2F4F6"/>
+  <rect width="22" height="900" fill="#0F7C77"/>
+  <rect x="90" y="56" width="1454" height="788" fill="none" stroke="#D5DDE4" stroke-width="2"/>
 
-  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="150" y="238" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="700" letter-spacing="7" fill="#0F7C77">ARQUITECTURA DE SOFTWARE</text>
+  <rect x="150" y="268" width="300" height="4" fill="#0F7C77"/>
 
-  <g opacity="0.14">
-    <path d="M0 120H1600M0 240H1600M0 360H1600M0 480H1600M0 600H1600M0 720H1600M0 840H1600" stroke="#94A3B8" stroke-width="1"/>
-    <path d="M160 0V900M320 0V900M480 0V900M640 0V900M800 0V900M960 0V900M1120 0V900M1280 0V900M1440 0V900" stroke="#94A3B8" stroke-width="1"/>
-  </g>
+  <text x="150" y="400" font-family="Georgia,'Times New Roman',serif" font-size="102" font-weight="600" fill="#1C2B3A">Un asistente legal</text>
+  <text x="150" y="518" font-family="Georgia,'Times New Roman',serif" font-size="102" font-weight="600" fill="#1C2B3A">con IA que cita</text>
+  <text x="150" y="636" font-family="Georgia,'Times New Roman',serif" font-size="102" font-weight="600" fill="#1C2B3A">sus fuentes</text>
 
-  <ellipse cx="1220" cy="200" rx="300" ry="140" fill="#2DD4BF" opacity="0.18" filter="url(#glow)"/>
-  <ellipse cx="340" cy="740" rx="320" ry="150" fill="#0F7C77" opacity="0.22" filter="url(#glow)"/>
-
-  <!-- pipeline -->
-  <g transform="translate(0,-18)">
-    <path d="M318 300H472M628 300H782M938 300H1092M1248 300H1320" stroke="#5EEAD4" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
-
-    <rect x="160" y="252" width="158" height="96" rx="18" fill="#0B1F26" stroke="#2F6B6B" stroke-width="2"/>
-    <rect x="196" y="282" width="86" height="10" rx="5" fill="#5EEAD4" opacity="0.85"/>
-    <rect x="196" y="304" width="58" height="8" rx="4" fill="#94A3B8" opacity="0.6"/>
-    <text x="239" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="600" fill="#7DD3C8">Fuentes</text>
-
-    <rect x="472" y="252" width="158" height="96" rx="18" fill="#0B1F26" stroke="#2F6B6B" stroke-width="2"/>
-    <path d="M512 322L540 286L568 314L592 282" stroke="#5EEAD4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="551" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="600" fill="#7DD3C8">Búsqueda</text>
-
-    <rect x="782" y="244" width="158" height="112" rx="20" fill="url(#accent)"/>
-    <circle cx="861" cy="286" r="17" fill="#04212B" opacity="0.85"/>
-    <rect x="822" y="314" width="78" height="9" rx="4.5" fill="#04212B" opacity="0.7"/>
-    <text x="861" y="382" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#A7F3EB">Agente</text>
-
-    <rect x="1092" y="252" width="158" height="96" rx="18" fill="#0B1F26" stroke="#2F6B6B" stroke-width="2"/>
-    <path d="M1132 300L1158 326L1212 272" stroke="#34D399" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="1171" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="600" fill="#7DD3C8">Citas</text>
-
-    <rect x="1320" y="252" width="120" height="96" rx="18" fill="#0B1F26" stroke="#2F6B6B" stroke-width="2" stroke-dasharray="7 6"/>
-    <rect x="1350" y="278" width="60" height="9" rx="4.5" fill="#94A3B8" opacity="0.65"/>
-    <rect x="1350" y="296" width="44" height="9" rx="4.5" fill="#94A3B8" opacity="0.45"/>
-    <rect x="1350" y="314" width="52" height="9" rx="4.5" fill="#94A3B8" opacity="0.45"/>
-  </g>
-
-  <text x="160" y="540" font-family="system-ui,sans-serif" font-size="26" font-weight="700" letter-spacing="5" fill="#5EEAD4">ARQUITECTURA DE SOFTWARE</text>
-  <text x="160" y="628" font-family="Georgia,serif" font-size="74" font-weight="600" fill="#F1F5F9">Un asistente legal con IA</text>
-  <text x="160" y="716" font-family="Georgia,serif" font-size="74" font-weight="600" fill="#5EEAD4">que cita sus fuentes</text>
-  <text x="160" y="788" font-family="system-ui,sans-serif" font-size="27" fill="#94A3B8">RAG con verificación determinista · C4 · Azure</text>
+  <line x1="150" y1="734" x2="1484" y2="734" stroke="#D5DDE4" stroke-width="2"/>
+  <text x="150" y="784" font-family="system-ui,-apple-system,sans-serif" font-size="26" fill="#5B6B7A">Septiembre 2026</text>
+  <text x="1484" y="784" text-anchor="end" font-family="Georgia,'Times New Roman',serif" font-size="27" fill="#2A3D50">Rafael Padilla</text>
 </svg>
