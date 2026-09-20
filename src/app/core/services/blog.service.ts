@@ -30,6 +30,7 @@ const MOCK_POSTS: BlogPost[] = [
     category: 'Arquitectura de software',
     tags: ['IA', 'RAG', 'Arquitectura', 'C4', '.NET', 'Python', 'Azure'],
     readTime: 12,
+    imageUrl: 'img/blog/asistente-legal-ia-cover.svg',
     content: [
       { type: 'text', content: 'Conectar un modelo de lenguaje a una carpeta de PDFs toma una tarde. El resultado redacta bien, responde con seguridad y, tarde o temprano, cita un artículo que no existe. En la mayoría de dominios eso es una molestia. En derecho es un problema serio: una norma derogada presentada como vigente puede costarle un caso a alguien.' },
       { type: 'text', content: 'Lo que sigue es una arquitectura para un asistente legal diseñado para evitar ese tipo de fallas. El ejemplo se llama Normativa y cubre legislación centroamericana, aunque las mismas decisiones sirven para cumplimiento bancario, seguros o soporte técnico. En todos esos casos la respuesta tiene que poder rastrearse hasta un documento.' },
@@ -225,6 +226,7 @@ con alertas antes de llegar al límite.` },
     category: 'IA & Productividad',
     tags: ['IA', 'Claude', 'Angular', '.NET', 'Productividad'],
     readTime: 6,
+    imageUrl: 'img/blog/ia-desarrollo-cover.svg',
     content: [
       { type: 'text', content: 'Hace un año veía la IA generativa como una herramienta curiosa para generar texto. Hoy es parte integral de mi flujo de desarrollo. Desde la arquitectura de mi sistema ERP/POS Multi-Tenant hasta la creación de Prix-R9, la IA ha cambiado fundamentalmente cómo escribo, reviso y diseño software.' },
 
@@ -273,6 +275,7 @@ con alertas antes de llegar al límite.` },
     category: 'Arquitectura',
     tags: ['.NET 9', 'Multi-Tenant', 'ERP', 'Clean Architecture', 'PostgreSQL'],
     readTime: 8,
+    imageUrl: 'img/blog/multi-tenant-cover.svg',
     content: [
       { type: 'text', content: 'Construir un sistema ERP/POS Multi-Tenant no es solo "agregar un TenantId a las tablas". Es diseñar desde cero para que múltiples negocios coexistan de forma segura, eficiente y escalable en una misma infraestructura. Estas son las lecciones que aprendí construyendo el mío con .NET 9 y PostgreSQL.' },
 
@@ -347,6 +350,7 @@ con alertas antes de llegar al límite.` },
     category: 'Open Source',
     tags: ['Node.js', 'NPM', 'CLI', 'Open Source', 'Pruebas de carga'],
     readTime: 5,
+    imageUrl: 'img/blog/prix-r9-npm-cover.svg',
     content: [
       { type: 'text', content: 'Todo empezó con una frustración: necesitaba probar la carga de un endpoint que requería dos requests encadenados (subir archivo → ejecutar proceso) y ninguna herramienta existente lo hacía simple. JMeter es poderoso pero pesado, k6 requiere escribir scripts en JavaScript, y ab/wrk solo soportan requests simples. Así nació Prix-R9.' },
 
