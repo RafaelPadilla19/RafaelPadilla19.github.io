@@ -35,15 +35,23 @@ html {
 }
 
 /* Custom Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--color-base-content) 25%, transparent) transparent;
+}
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-base-content/20 rounded-full border-2 border-base-100;
+  @apply bg-base-content/20 rounded-full border-2 border-transparent bg-clip-padding;
 }
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-base-content/40;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
