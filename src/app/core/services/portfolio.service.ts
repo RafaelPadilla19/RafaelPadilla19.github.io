@@ -2,18 +2,41 @@ import { Injectable, computed } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { delay, of } from 'rxjs';
 
-export type ProjectType = 'video' | 'mobile-app' | 'web-app' | 'cover';
+export type ProjectType = 'video' | 'mobile-app' | 'web-app' | 'desktop-app' | 'cover';
+
+export interface InstallationMethod {
+  label: string;
+  command: string;
+  style: 'terminal' | 'code';
+}
+
+export interface CustomSection {
+  title: string;
+  intro?: string;
+  code?: string;
+  result?: string;
+}
 
 export interface Project {
   id: number;
   title: string;
   description: string;
   details?: string;
+  codeSample?: string;
+  quickTestCommand?: string;
+  howItWorksIntro?: string;
+  howItWorksSteps?: string[];
+  features?: string[];
+  requirements?: string[];
+  installationMethods?: InstallationMethod[];
+  customSections?: CustomSection[];
   imageUrl: string;
   videoUrl?: string;
   screenshots?: string[];
   technologies: string[];
   githubUrl?: string;
+  nugetUrl?: string;
+  npmUrl?: string;
   playStoreUrl?: string;
   category: 'profesional' | 'universitario';
   type: ProjectType;
@@ -89,7 +112,7 @@ Destaca por contar con su propio firmador electrónico integrado nativamente en 
     videoUrl: 'https://www.youtube.com/embed/HnC7OEkf1DA',
     technologies: ['C#', '.NET Framework', 'Windows Forms'],
     category: 'universitario',
-    type: 'web-app'
+    type: 'desktop-app'
   },
   {
     id: 3,
@@ -99,7 +122,7 @@ Destaca por contar con su propio firmador electrónico integrado nativamente en 
     videoUrl: 'https://www.youtube.com/embed/xEfrTv3KqzY',
     technologies: ['C#', 'Entity Framework', 'SQL Server', 'Windows Forms'],
     category: 'universitario',
-    type: 'web-app'
+    type: 'desktop-app'
   },
   {
     id: 4,
@@ -122,7 +145,175 @@ Destaca por contar con su propio firmador electrónico integrado nativamente en 
     technologies: ['Java', 'Hibernate (HQL)', 'REST Web Services', 'MySQL', 'JSP', 'Bootstrap'],
     category: 'universitario',
     type: 'web-app'
-  }
+  },
+  {
+    id: 12,
+    title: 'RMapper - Micro mapeador de objetos para .NET',
+    description: 'Librería NuGet ligera para mapear DTOs y entidades por nombre/tipo, con soporte de exclusión mediante [IgnoreMap].',
+    details: `Micro mapeador de objetos para .NET enfocado en simplicidad y bajo peso. Permite mapear DTOs a entidades por nombre y tipo, y excluye propiedades con [IgnoreMap]. Ideal para capas de aplicación donde quieres evitar código repetitivo de transformación.`,
+    codeSample: `using RMapper.Core.Attributes;
+using RMapper.Core.Interfaces;
+using RMapper.Reflection;
+
+public class UserDto
+{
+    public string Nombre { get; set; }
+
+    [IgnoreMap] // No se mapeara
+    public int Edad { get; set; }
+}
+
+public class Usuario
+{
+    public string Nombre { get; set; }
+    public int Edad { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        var dto = new UserDto { Nombre = "Carlos", Edad = 30 };
+
+        IMapper mapper = new SimpleMapper();
+        var usuario = mapper.Map<UserDto, Usuario>(dto);
+
+        Console.WriteLine(usuario.Nombre); // Carlos
+        Console.WriteLine(usuario.Edad);   // 0 (ignorado por [IgnoreMap])
+    }
+}`,
+    quickTestCommand: `dotnet new console -n RMapper.Demo
+cd RMapper.Demo
+dotnet add package RMapper
+// Abre Program.cs y pega el ejemplo de "Uso basico"
+dotnet run`,
+    howItWorksIntro: 'RMapper usa Reflection para:',
+    howItWorksSteps: [
+      'Leer las propiedades publicas de origen y destino.',
+      'Comparar por nombre y tipo.',
+      'Ignorar las que tengan [IgnoreMap].',
+      'Copiar valores en el objeto destino.'
+    ],
+    features: [
+      'Mapeo automatico por nombre y tipo de propiedad.',
+      'Ignora propiedades decoradas con [IgnoreMap].',
+      'API minima: IMapper y SimpleMapper.',
+      'Cero dependencias externas.',
+      'Compilado para .NET Standard 2.0 y .NET 8.0.'
+    ],
+    requirements: [
+      'Cualquier proyecto en .NET Framework 4.6.1+, .NET Core 2.0+, .NET 5/6/7/8+.',
+      'No requiere configuracion adicional.'
+    ],
+    installationMethods: [
+      { label: '.NET CLI', command: 'dotnet add package RMapper', style: 'terminal' },
+      { label: 'Package Manager (Visual Studio)', command: 'Install-Package RMapper', style: 'terminal' },
+      { label: 'PackageReference', command: '<ItemGroup>\n  <PackageReference Include="RMapper" Version="1.*" />\n</ItemGroup>', style: 'code' },
+    ],
+    customSections: [
+      {
+        title: '¿Qué hace [IgnoreMap]?',
+        intro: 'Cualquier propiedad marcada con IgnoreMap será omitida durante el mapeo.',
+        code: `public class ProductoDto\n{\n    public string Nombre { get; set; }\n\n    [IgnoreMap]\n    public decimal Precio { get; set; }\n}`,
+        result: 'En el objeto destino, Precio queda con su valor por defecto (p. ej. 0m).',
+      }
+    ],
+    imageUrl: 'img/portfolio/rmapper/rmapper-cover.svg',
+    technologies: ['C#', '.NET 8', '.NET Standard 2.0', 'Reflection', 'NuGet'],
+    nugetUrl: 'https://www.nuget.org/packages/RMapper',
+    category: 'profesional',
+    type: 'web-app'
+  },
+  {
+    id: 13,
+    title: 'Prix-R9 — CLI de Pruebas de Carga HTTP/REST',
+    description: 'Herramienta CLI para pruebas de carga con ramp-up, multipart, escenarios encadenados por steps y extracción de valores entre requests.',
+    details: `Prix-R9 es una herramienta de línea de comandos diseñada para ejecutar pruebas de carga y estrés sobre APIs HTTP/REST. Permite definir escenarios simples de un solo endpoint o escenarios complejos encadenados mediante steps, donde cada paso puede extraer valores del response JSON y reutilizarlos en los siguientes pasos.
+
+Incluye un importador de cURL (prix-r9-curl) que convierte requests exportados desde el navegador, Postman o Swagger a configuraciones JSON listas para usar como bloques base de escenarios multi-step.
+
+Al finalizar cada ejecución, genera un reporte.txt con métricas detalladas: iteraciones totales, exitosas y fallidas, throughput real (iter/s y req/s), latencia por iteración, latencia agregada por request y métricas por step incluyendo códigos de estado HTTP.`,
+    codeSample: `{
+  "name": "Carga encadenada",
+  "startRate": 2,
+  "targetRate": 5,
+  "rampUpTime": 5,
+  "duration": 10,
+  "steps": [
+    {
+      "name": "uploadProcess",
+      "url": "https://api.example.test/blob/upload",
+      "method": "post",
+      "headers": {
+        "Authorization": "Bearer {{uuid}}"
+      },
+      "file": "./Plantilla.csv",
+      "filekey": "File",
+      "body": { "TypeFile": "1" },
+      "extract": {
+        "processId": "$.uploadFileProcessId"
+      }
+    },
+    {
+      "name": "executeProcess",
+      "url": "https://api.example.test/approvals/Execute",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "UploadFileProcessId": "{{processId}}",
+        "AprovalStatus": 1
+      }
+    }
+  ]
+}`,
+    quickTestCommand: `npm install -g prix-r9
+prix-r9 --config mi-config.json
+prix-r9 --prompt
+prix-r9-curl -i mi-curl.txt -o endpoint.json`,
+    howItWorksIntro: 'Flujo de ejecución por iteración:',
+    howItWorksSteps: [
+      'Cada iteración crea su propio contexto aislado de variables.',
+      'Se ejecutan los steps en orden secuencial dentro de la iteración.',
+      'extract guarda valores del response JSON para los steps siguientes.',
+      'Si un step falla (HTTP, red o extracción), la iteración termina y los steps restantes quedan omitidos por cascade.',
+      'Al finalizar, genera reporte.txt con métricas generales y por step.'
+    ],
+    features: [
+      'Pruebas de carga con rate fijo o ramp-up progresivo (startRate → targetRate).',
+      'Escenarios encadenados con steps y extracción de valores entre requests.',
+      'Soporte multipart con archivo (file + filekey) sin configuración manual de boundary.',
+      'Variables dinámicas: {{uuid}}, {{timestamp}}, {{random_number}}.',
+      'Importador prix-r9-curl para convertir cURL a configuración JSON.',
+      'Soporte HTTPS local con certificados autofirmados (insecureHttps).',
+      'Reporte detallado con métricas por iteración y por step.',
+      'Modo interactivo con --prompt para generar configuraciones.'
+    ],
+    installationMethods: [
+      { label: 'npm (global)', command: 'npm install -g prix-r9', style: 'terminal' },
+    ],
+    customSections: [
+      {
+        title: 'Extracción de valores entre steps',
+        intro: 'extract acepta un mapa nombreVariable → ruta JSONPath para reutilizar valores en steps posteriores.',
+        code: `"extract": {\n  "uploadFileProcessId": "$.uploadFileProcessId",\n  "primerDetalle": "$.data[0].id"\n}`,
+        result: 'Rutas soportadas: $.propiedad, $.objeto.hijo, $.items[0].id, $[\'propiedad-rara\']. Las rutas son case-sensitive.',
+      },
+      {
+        title: 'Variables dinámicas',
+        intro: 'Se pueden usar en url, headers, body, file y filekey.',
+        code: `"headers": {\n  "Authorization": "Bearer {{uuid}}",\n  "X-Request-ID": "{{uuid}}"\n},\n"body": {\n  "correo": "prueba_{{timestamp}}@example.test"\n}`,
+        result: 'Disponibles: {{uuid}}, {{timestamp}} y {{random_number}}. Se generan por cada iteración.',
+      }
+    ],
+    imageUrl: 'img/portfolio/prix-r9/prix-r9-cover.svg',
+    technologies: ['Node.js', 'JavaScript', 'CLI', 'Axios', 'Commander.js'],
+    npmUrl: 'https://www.npmjs.com/package/prix-r9',
+    category: 'profesional',
+    type: 'web-app'
+  },
+
 ];
 
 @Injectable({
@@ -149,3 +340,5 @@ export class PortfolioService {
     return this.projectsResource.value()?.find((p: Project) => p.id === id);
   }
 }
+
+

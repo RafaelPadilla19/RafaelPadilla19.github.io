@@ -1,5 +1,5 @@
-import { Component, computed, inject, signal, effect } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component, computed, inject, signal, effect, HostListener } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl, Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PortfolioService, Project } from '../../core/services/portfolio.service';
 
@@ -12,6 +12,8 @@ export default class ProjectDetail {
   private route = inject(ActivatedRoute);
   private portfolioService = inject(PortfolioService);
   private sanitizer = inject(DomSanitizer);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
 
   public projectId = signal<number>(0);
 
@@ -25,6 +27,8 @@ export default class ProjectDetail {
     return url ? this.sanitizer.bypassSecurityTrustResourceUrl(url) : null;
   });
 
+  public isLoading = computed(() => this.portfolioService.projectsResource.isLoading());
+
   public selectedScreenshot = signal<string | null>(null);
   public activeScreenshot = signal<string | null>(null);
 
@@ -32,13 +36,23 @@ export default class ProjectDetail {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.projectId.set(id);
 
-    // Set initial active screenshot when project loads
     effect(() => {
       const proj = this.project();
       if (proj?.screenshots?.length && !this.activeScreenshot()) {
         this.activeScreenshot.set(proj.screenshots[0]);
       }
+      if (proj) {
+        this.titleService.setTitle(`${proj.title} | Rafael Padilla`);
+        this.metaService.updateTag({ name: 'description', content: proj.description });
+      }
     });
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    if (this.selectedScreenshot()) {
+      this.closeLightbox();
+    }
   }
 
   setActiveScreenshot(url: string): void {

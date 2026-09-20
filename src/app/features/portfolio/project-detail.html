@@ -39,6 +39,22 @@
               GitHub
             </a>
           }
+          @if (proj.nugetUrl) {
+            <a [href]="proj.nugetUrl" target="_blank" rel="noopener" class="btn btn-sm btn-outline rounded-full gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+              </svg>
+              NuGet
+            </a>
+          }
+          @if (proj.npmUrl) {
+            <a [href]="proj.npmUrl" target="_blank" rel="noopener" class="btn btn-sm btn-outline rounded-full gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+              </svg>
+              npm
+            </a>
+          }
         </div>
       </div>
 
@@ -61,6 +77,134 @@
         </div>
       </div>
 
+      @if (proj.codeSample) {
+        <div class="mb-12">
+          <h2 class="text-xl font-bold text-base-content mb-4">Uso basico</h2>
+          <div class="rounded-2xl overflow-hidden border border-base-content/20 bg-slate-950 shadow-xl">
+            <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800 bg-slate-900">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              </div>
+              <span class="text-xs text-slate-400 font-mono">Program.cs</span>
+            </div>
+            <pre class="m-0 p-5 overflow-x-auto text-[13px] leading-6 text-slate-100 font-mono"><code>{{ proj.codeSample }}</code></pre>
+          </div>
+        </div>
+      }
+
+      @if (proj.features && proj.features.length > 0) {
+        <div class="mb-12">
+          <h2 class="text-xl font-bold text-base-content mb-4">Caracteristicas</h2>
+          <div class="rounded-2xl border border-base-content/15 bg-base-200/30 p-4 sm:p-5">
+            <ul class="space-y-3">
+              @for (feature of proj.features; track feature) {
+                <li class="flex items-start gap-3 text-sm text-base-content/85">
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/15 text-primary text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span>{{ feature }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+
+      @if (proj.requirements && proj.requirements.length > 0) {
+        <div class="mb-12">
+          <h2 class="text-xl font-bold text-base-content mb-4">Requisitos</h2>
+          <div class="rounded-2xl border border-base-content/15 bg-base-200/30 p-4 sm:p-5">
+            <ul class="space-y-3">
+              @for (req of proj.requirements; track req) {
+                <li class="flex items-start gap-3 text-sm text-base-content/85">
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-secondary/15 text-secondary text-xs font-bold shrink-0 mt-0.5">•</span>
+                  <span>{{ req }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+
+      <!-- Installation Methods (generic) -->
+      @if (proj.installationMethods && proj.installationMethods.length > 0) {
+        <div class="mb-12">
+          <h2 class="text-xl font-bold text-base-content mb-4">Instalación</h2>
+          @for (method of proj.installationMethods; track method.label) {
+            <div class="rounded-2xl overflow-hidden border border-base-content/20 shadow-xl mb-4"
+              [class.bg-neutral]="method.style === 'terminal'"
+              [class.bg-slate-950]="method.style === 'code'">
+              <div class="px-4 py-2 border-b text-xs font-mono"
+                [class.border-base-100/20]="method.style === 'terminal'"
+                [class.bg-base-300/20]="method.style === 'terminal'"
+                [class.text-base-content/70]="method.style === 'terminal'"
+                [class.border-slate-800]="method.style === 'code'"
+                [class.bg-slate-900]="method.style === 'code'"
+                [class.text-slate-400]="method.style === 'code'">
+                {{ method.label }}
+              </div>
+              <pre class="m-0 p-5 overflow-x-auto text-[13px] leading-6 font-mono"
+                [class.text-success]="method.style === 'terminal'"
+                [class.text-slate-100]="method.style === 'code'"><code>{{ method.command }}</code></pre>
+            </div>
+          }
+        </div>
+      }
+
+      @if (proj.quickTestCommand) {
+        <div class="mb-12">
+          <h2 class="text-xl font-bold text-base-content mb-4">Prueba rapida local</h2>
+          <div class="rounded-2xl overflow-hidden border border-base-content/20 bg-neutral shadow-xl">
+            <div class="px-4 py-2 border-b border-base-100/20 bg-base-300/20 text-xs text-base-content/70 font-mono">
+              Terminal
+            </div>
+            <pre class="m-0 p-5 overflow-x-auto text-[13px] leading-6 text-success font-mono"><code>{{ proj.quickTestCommand }}</code></pre>
+          </div>
+        </div>
+      }
+
+      <!-- Custom Sections (generic) -->
+      @if (proj.customSections && proj.customSections.length > 0) {
+        @for (section of proj.customSections; track section.title) {
+          <div class="mb-12">
+            <h2 class="text-xl font-bold text-base-content mb-4">{{ section.title }}</h2>
+            @if (section.intro) {
+              <p class="text-base-content/70 text-sm mb-4">{{ section.intro }}</p>
+            }
+            @if (section.code) {
+              <div class="rounded-2xl overflow-hidden border border-base-content/20 bg-slate-950 shadow-xl mb-4">
+                <div class="px-4 py-2 border-b border-slate-800 bg-slate-900 text-xs text-slate-400 font-mono">Ejemplo</div>
+                <pre class="m-0 p-5 overflow-x-auto text-[13px] leading-6 text-slate-100 font-mono"><code>{{ section.code }}</code></pre>
+              </div>
+            }
+            @if (section.result) {
+              <div class="rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-base-content/80">
+                {{ section.result }}
+              </div>
+            }
+          </div>
+        }
+      }
+
+      @if (proj.howItWorksSteps && proj.howItWorksSteps.length > 0) {
+        <div class="mb-12">
+          <h2 class="text-xl font-bold text-base-content mb-4">¿Cómo funciona?</h2>
+          @if (proj.howItWorksIntro) {
+            <p class="text-base-content/70 text-sm mb-4">{{ proj.howItWorksIntro }}</p>
+          }
+          <div class="rounded-2xl border border-base-content/15 bg-base-200/30 p-4 sm:p-5">
+            <ol class="space-y-3">
+              @for (step of proj.howItWorksSteps; track step; let i = $index) {
+                <li class="flex items-start gap-3 text-sm text-base-content/85">
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/15 text-primary text-xs font-bold shrink-0 mt-0.5">{{ i + 1 }}</span>
+                  <span>{{ step }}</span>
+                </li>
+              }
+            </ol>
+          </div>
+        </div>
+      }
+
       <!-- Screenshots Showcase -->
       @if (proj.screenshots && proj.screenshots.length > 0) {
         <div class="mb-12">
@@ -77,7 +221,7 @@
                 <button
                   (click)="selectScreenshot(activeScreenshot()!)"
                   class="relative w-56 sm:w-64 rounded-[2rem] overflow-hidden border-[3px] border-base-content/20 shadow-2xl cursor-pointer hover:border-primary/40 transition-colors duration-300 bg-black">
-                  <img [src]="activeScreenshot()!" [alt]="proj.title" class="w-full h-auto" />
+                  <img [src]="activeScreenshot()!" [alt]="proj.title" loading="lazy" class="w-full h-auto" />
                 </button>
               </div>
             </div>
@@ -95,24 +239,31 @@
                 [class.border-base-content/10]="activeScreenshot() !== screenshot"
                 [class.opacity-60]="activeScreenshot() !== screenshot"
                 [class.hover:opacity-100]="activeScreenshot() !== screenshot">
-                <img [src]="screenshot" [alt]="proj.title + ' thumbnail'" class="w-full h-full object-cover object-top" />
+                <img [src]="screenshot" [alt]="proj.title + ' thumbnail'" loading="lazy" class="w-full h-full object-cover object-top" />
               </button>
             }
           </div>
         </div>
       }
-    } @else {
-      <!-- Loading / Not found -->
+    } @else if (isLoading()) {
       <div class="flex flex-col items-center justify-center py-20">
         <span class="loading loading-ring loading-lg text-primary mb-4 w-16 h-16"></span>
         <p class="text-base-content/60">Cargando proyecto...</p>
+      </div>
+    } @else {
+      <div class="flex flex-col items-center justify-center py-20">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 text-base-content/30 mb-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+        <p class="text-base-content/60 font-medium mb-2">Proyecto no encontrado</p>
+        <a routerLink="/portfolio" class="btn btn-sm btn-primary rounded-full mt-4">Volver al portafolio</a>
       </div>
     }
   </div>
 
   <!-- Lightbox -->
   @if (selectedScreenshot()) {
-    <div class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-pointer" (click)="closeLightbox()">
+    <div class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-pointer" (click)="closeLightbox()" role="dialog" aria-label="Vista ampliada de captura de pantalla">
       <button class="absolute top-4 right-4 btn btn-circle btn-ghost text-white text-2xl hover:bg-white/10" aria-label="Cerrar">✕</button>
       <img [src]="selectedScreenshot()!" alt="Screenshot ampliado" class="max-h-[90vh] max-w-full object-contain rounded-lg shadow-2xl" />
     </div>

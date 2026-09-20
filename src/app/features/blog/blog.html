@@ -1,6 +1,6 @@
 <section class="min-h-screen py-20 bg-base-200">
   <div class="container mx-auto px-4 max-w-5xl">
-    
+
     <div class="text-center mb-16">
       <h2 class="text-sm font-bold tracking-widest text-primary uppercase mb-2">Artículos</h2>
       <h3 class="text-3xl lg:text-4xl font-extrabold mb-4">Blog Personal</h3>
@@ -30,10 +30,10 @@
     @if (blogService.postsResource.value(); as posts) {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @for (post of posts; track post.id) {
-          <div class="card bg-base-100 shadow-xl border border-base-200 hover:-translate-y-2 transition-transform duration-300">
+          <a [routerLink]="['/blog', post.id]" class="card bg-base-100 shadow-xl border border-base-200 hover:-translate-y-2 transition-transform duration-300 cursor-pointer no-underline">
             @if (post.imageUrl) {
               <figure class="h-48 w-full overflow-hidden">
-                <img [src]="post.imageUrl" [alt]="post.title" class="object-cover w-full h-full" />
+                <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" class="object-cover w-full h-full" />
               </figure>
             } @else {
               <div class="h-48 w-full bg-primary/10 flex items-center justify-center">
@@ -47,15 +47,22 @@
                 <div class="badge badge-secondary badge-outline text-xs">{{ post.category }}</div>
                 <div class="text-xs text-base-content/50 font-medium">{{ post.date | date:'mediumDate' }}</div>
               </div>
-              <h3 class="card-title text-xl font-bold leading-tight line-clamp-2 hover:text-primary transition-colors cursor-pointer" [title]="post.title">{{ post.title }}</h3>
+              <h3 class="card-title text-xl font-bold leading-tight line-clamp-2 hover:text-primary transition-colors" [title]="post.title">{{ post.title }}</h3>
               <p class="text-base-content/70 text-sm mt-3 line-clamp-3">{{ post.excerpt }}</p>
-              
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-1.5 mt-3">
+                @for (tag of post.tags; track tag) {
+                  <span class="text-[11px] px-2 py-0.5 rounded-full bg-base-200 text-base-content/60">{{ tag }}</span>
+                }
+              </div>
+
               <div class="card-actions justify-between items-center mt-6">
                 <span class="text-xs text-base-content/50">{{ post.readTime }} min lectura</span>
-                <button class="btn btn-primary btn-sm btn-outline rounded-full">Leer más</button>
+                <span class="btn btn-primary btn-sm btn-outline rounded-full">Leer más</span>
               </div>
             </div>
-          </div>
+          </a>
         } @empty {
           <div class="col-span-full text-center py-20">
             <p class="text-xl text-base-content/50">Aún no hay publicaciones.</p>
